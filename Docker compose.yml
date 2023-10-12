@@ -1,0 +1,36 @@
+version: 1.0
+
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      WORDPRESS_DB_HOST:http://my-localhost 
+      WORDPRESS_DB_USER: Pallavi
+      WORDPRESS_DB_PASSWORD: 
+      WORDPRESS_DB_NAME: MariaDB
+    volumes:
+      - wordpress_data:/var/www/html
+
+  db:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD:#pallavi@123
+      MYSQL_DATABASE: MariaDB
+      MYSQL_USER: Pallavi
+      MYSQL_PASSWORD: #pallavi8050
+    volumes:
+      - db_data:/var/lib/mysql
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  wordpress_data:
+  db_data:
